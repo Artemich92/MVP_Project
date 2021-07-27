@@ -1,6 +1,6 @@
 package ru.artkolest.spidertestproject.presentation.main
 
-import ru.artkolest.spidertestproject.base.extensions.BaseContract
+import ru.artkolest.spidertestproject.base.BaseContract
 
 interface MainContract {
 

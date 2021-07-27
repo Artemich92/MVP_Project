@@ -1,6 +1,6 @@
 package ru.artkolest.spidertestproject.presentation.list_photos
 
-import ru.artkolest.spidertestproject.base.extensions.BaseContract
+import ru.artkolest.spidertestproject.base.BaseContract
 
 interface PhotosContract {
 
@@ -9,6 +9,7 @@ interface PhotosContract {
     }
 
     interface Presenter: BaseContract.Presenter{
+        var view: View
 
     }
 }

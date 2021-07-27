@@ -1,4 +1,4 @@
-package ru.artkolest.spidertestproject.base.extensions
+package ru.artkolest.spidertestproject.base
 
 interface BaseContract {
 

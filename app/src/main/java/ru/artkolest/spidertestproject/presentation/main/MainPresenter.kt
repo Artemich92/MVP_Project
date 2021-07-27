@@ -1,10 +1,18 @@
 package ru.artkolest.spidertestproject.presentation.main
 
-import ru.artkolest.spidertestproject.base.extensions.BasePresenter
+import ru.artkolest.spidertestproject.base.BasePresenter
+import ru.artkolest.spidertestproject.di.scopes.MainScope
+import javax.inject.Inject
 
-class MainPresenter {
+@MainScope
+class MainPresenter @Inject constructor(
 
-/*class MainPresenter (): BasePresenter<MainContract.View>(),
-MainContract.Presenter{*/
+) : BasePresenter<MainContract.View>(), MainContract.Presenter {
+
+    override lateinit var view: MainContract.View
+
+    override fun start() = Unit
+
+
 
 }

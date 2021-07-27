@@ -1,18 +1,15 @@
 package ru.artkolest.spidertestproject.presentation.list_photos
 
-import ru.artkolest.spidertestproject.base.extensions.BasePresenter
+import ru.artkolest.spidertestproject.base.BasePresenter
+import ru.artkolest.spidertestproject.di.scopes.PhotosScope
+import javax.inject.Inject
 
-class PhotosPresenter(): BasePresenter<PhotosContract.View>(),
+@PhotosScope
+class PhotosPresenter @Inject constructor(): BasePresenter<PhotosContract.View>(),
 PhotosContract.Presenter{
-    override fun start() {
 
-    }
+    override lateinit var view: PhotosContract.View
 
-    override fun stop() {
+    override fun start() = Unit
 
-    }
-
-    override fun dispose() {
-
-    }
 }
