@@ -5,14 +5,14 @@ import ru.artkolest.spidertestproject.App
 import ru.artkolest.spidertestproject.di.components.MainComponent
 import ru.artkolest.spidertestproject.di.components.PhotoInfoComponent
 import ru.artkolest.spidertestproject.di.components.PhotosComponent
-import ru.artkolest.spidertestproject.di.modules.ApiSourceModule
+import ru.artkolest.spidertestproject.di.modules.NetworkModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
       AppModule::class,
-        ApiSourceModule::class,
+        NetworkModule::class,
     ]
 )
 interface AppComponent {

@@ -1,7 +1,9 @@
 package ru.artkolest.spidertestproject.presentation.list_photos
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,7 @@ import ru.artkolest.spidertestproject.App
 import ru.artkolest.spidertestproject.R
 import ru.artkolest.spidertestproject.base.BaseFragment
 import ru.artkolest.spidertestproject.base.extensions.hide
+import ru.artkolest.spidertestproject.base.extensions.permissions
 import ru.artkolest.spidertestproject.databinding.FragmentPhotosBinding
 import ru.artkolest.spidertestproject.domain.models.PhotoModel
 
@@ -34,13 +37,21 @@ class PhotosFragment : BaseFragment<PhotosContract.Presenter>(R.layout.fragment_
     }
 
     private fun initUi() = with(binding) {
-
+        permissions(Manifest.permission.INTERNET) {
+            this.allGranted {
+                presenter.start()
+            }
+            this.denied {
+                Toast.makeText(requireContext(), "Ошибка пермишенов", Toast.LENGTH_SHORT).show()
+                requireActivity().finish()
+            }
+        }
         toolbar.ivClose.hide()
         toolbar.tvTitle.text = "Список фотографий"
     }
 
     private fun initRecyclerView() {
-        val gridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        val gridLayoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
         rvPhotos.layoutManager = gridLayoutManager
         rvPhotos.setHasFixedSize(true)
         adapter = PhotoAdapter(object : PhotoAdapter.Listener {
@@ -53,6 +64,15 @@ class PhotosFragment : BaseFragment<PhotosContract.Presenter>(R.layout.fragment_
 
     override fun onSetData(photos: List<PhotoModel>) {
         adapter.setItems(photos)
+    }
+
+    override fun showError(throwable: Throwable) {
+        Toast.makeText(requireContext(), throwable.message.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        presenter.dispose()
+        super.onDestroyView()
     }
 
     override fun createComponent() = App.instance.getAppComponent()

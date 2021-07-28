@@ -7,6 +7,7 @@ interface PhotoInfoContract {
 
     interface View: BaseContract.View{
         fun onSetData(photo: List<PhotoModel>)
+        fun showError(throwable: Throwable)
 
     }
 

@@ -2,6 +2,7 @@ package ru.artkolest.spidertestproject.presentation.photo_info
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +46,15 @@ class PhotoInfoFragment: BaseFragment<PhotoInfoContract.Presenter>(
 
     override fun onSetData(comment: List<PhotoModel>) {
         adapter.setComment(comment)
+    }
+
+    override fun showError(throwable: Throwable) {
+        Toast.makeText(requireContext(), throwable.message.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        presenter.dispose()
+        super.onDestroyView()
     }
 
     override fun createComponent() = App.instance.getAppComponent()

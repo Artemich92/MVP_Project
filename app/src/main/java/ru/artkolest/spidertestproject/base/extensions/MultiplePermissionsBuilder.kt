@@ -1,7 +1,6 @@
 package ru.artkolest.spidertestproject.base.extensions
 
 class MultiplePermissionsBuilder {
-
     var allGranted: () -> Unit = {}
 
     var denied: (List<String>) -> Unit = {}

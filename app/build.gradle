@@ -60,10 +60,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav"
 
     // Rx-Java
-    //implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
-    //implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-
-    // Rx-Java
     implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
@@ -74,7 +70,12 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger"
 
     // Retrofit-2
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    def retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+    implementation 'com.google.code.gson:gson:2.8.7'
 
     // Glide
     def glide = "4.12.0"
@@ -84,8 +85,5 @@ dependencies {
     // ViewBindingPropertyDelegate
     def binding = "1.4.1"
     implementation "com.kirich1409.viewbindingpropertydelegate:vbpd-noreflection:$binding"
-
-
-
 
 }
