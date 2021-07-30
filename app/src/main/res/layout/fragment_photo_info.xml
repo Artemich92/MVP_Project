@@ -16,11 +16,11 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/sivPhoto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_margin="16dp"
         android:layout_marginTop="8dp"
         android:outlineProvider="background"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -37,4 +37,31 @@
         app:layout_constraintTop_toBottomOf="@+id/sivPhoto"
         tools:itemCount="2"
         tools:listitem="@layout/item_comment" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gLoad"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="pbLoad, tvLoad" />
+
+    <ProgressBar
+        android:id="@+id/pbLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/tvLoad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/load"
+        app:layout_constraintEnd_toEndOf="@+id/pbLoad"
+        app:layout_constraintStart_toStartOf="@+id/pbLoad"
+        app:layout_constraintTop_toBottomOf="@+id/pbLoad" />
 </androidx.constraintlayout.widget.ConstraintLayout>

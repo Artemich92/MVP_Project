@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import javax.inject.Inject
 
-abstract class BaseActivity<P: BaseContract.Presenter>
+abstract class BaseActivity<P : BaseContract.Presenter>
     : AppCompatActivity(), BaseContract.View {
 
     @Inject

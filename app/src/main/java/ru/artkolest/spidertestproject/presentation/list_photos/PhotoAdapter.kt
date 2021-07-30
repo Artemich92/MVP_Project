@@ -5,17 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_photo.view.*
 import ru.artkolest.spidertestproject.R
 import ru.artkolest.spidertestproject.base.extensions.onClick
-import ru.artkolest.spidertestproject.domain.models.PhotoModel
+import ru.artkolest.spidertestproject.domain.models.pictures.ImageEntity
 
-class PhotoAdapter(private var listener: Listener): RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
+class PhotoAdapter(private var listener: Listener) :
+    RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
-    private var data = ArrayList<PhotoModel>()
+    private var images = ArrayList<ImageEntity>()
 
     interface Listener {
-        fun onClick(model: PhotoModel)
+        fun onClick(image: ImageEntity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
@@ -24,32 +26,33 @@ class PhotoAdapter(private var listener: Listener): RecyclerView.Adapter<PhotoAd
     }
 
     override fun onBindViewHolder(viewHolder: PhotoViewHolder, position: Int) {
-        viewHolder.bind(data[position])
-        viewHolder.itemView.cvContainer.onClick { listener.onClick(data[position]) }
+        viewHolder.bind(images[position])
+        viewHolder.itemView.cvContainer.onClick {
+            listener.onClick(images[position])
+        }
     }
 
-    fun setItems(items: List<PhotoModel>) {
-        this.data.clear()
-        this.data.addAll(items)
+    fun setItems(images: List<ImageEntity>) {
+        this.images.clear()
+        this.images.addAll(images)
         this.notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return images.size
     }
 
-    class PhotoViewHolder(photo: View) : RecyclerView.ViewHolder(photo) {
-        fun bind(model: PhotoModel) {
-            // TODO: 27.07.2021 реализовать
+    class PhotoViewHolder(private var view: View) : RecyclerView.ViewHolder(view) {
+        fun bind(image: ImageEntity) {
+            setPhoto(image.link, view)
         }
-    }
 
-    private fun setPhoto(image: ByteArray?, view: View) {
-        Glide.with(view.context)
-            .asBitmap()
-            .load(image)
-            .placeholder(R.drawable.ic_launcher_background)
-            .circleCrop()
-            .into(view.sivPhoto)
+        private fun setPhoto(imageUri: String, view: View) {
+            Glide.with(view.context)
+                .asBitmap()
+                .load(imageUri)
+                .placeholder(R.drawable.hourglass)
+                .into(view.sivPhoto)
+        }
     }
 }

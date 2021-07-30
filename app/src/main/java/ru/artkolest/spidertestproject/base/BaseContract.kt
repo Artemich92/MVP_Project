@@ -4,7 +4,7 @@ interface BaseContract {
 
     interface View
 
-    interface Presenter{
+    interface Presenter {
         fun start()
         fun stop()
         fun dispose()

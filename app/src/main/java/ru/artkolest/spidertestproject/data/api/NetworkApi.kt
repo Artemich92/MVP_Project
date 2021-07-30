@@ -2,14 +2,24 @@ package ru.artkolest.spidertestproject.data.api
 
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Query
-import ru.artkolest.spidertestproject.domain.models.PhotoModel
+import retrofit2.http.Header
+import retrofit2.http.Path
+import ru.artkolest.spidertestproject.domain.models.pictures.Gallery
+import ru.artkolest.spidertestproject.domain.models.comments.DetailPhoto
 
 interface NetworkApi {
 
-    @GET("gifts")
-    fun getPopularPhoto(
-        @Query("profileId") profileId: Long,
-        @Query("offset") page: Int
-    ): Single<List<PhotoModel>> // сделать другую модель Response (с json)
+    @GET("/3/gallery/top/top/top")
+    fun getPopularPhotos(
+        @Header("Authorization")
+        auth: String = "Client-ID bfa94c4da5b1d5b"
+    )
+    : Single<Gallery>
+
+    @GET("/3/gallery/{postId}/comments")
+    fun getPost(
+        @Path("postId") postId: String,
+        @Header("Authorization")
+        auth: String = "Client-ID bfa94c4da5b1d5b"
+    ): Single<DetailPhoto>
 }

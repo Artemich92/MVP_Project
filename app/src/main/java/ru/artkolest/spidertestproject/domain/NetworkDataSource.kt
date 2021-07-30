@@ -1,11 +1,12 @@
 package ru.artkolest.spidertestproject.domain
 
 import io.reactivex.Single
-import ru.artkolest.spidertestproject.domain.models.PhotoModel
+import ru.artkolest.spidertestproject.domain.models.pictures.Gallery
+import ru.artkolest.spidertestproject.domain.models.comments.DetailPhoto
 
 interface NetworkDataSource {
 
-    fun getPhoto(photoId: Long, page: Int): Single<List<PhotoModel>>
+    fun getPhotos(): Single<Gallery>
 
-//    fun getPhoto(id: Long): Single<PhotoModel>
+    fun getPostInfo(postId: String): Single<DetailPhoto>
 }

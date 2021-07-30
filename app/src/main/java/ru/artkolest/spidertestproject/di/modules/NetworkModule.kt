@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.artkolest.spidertestproject.data.NetworkRepository
 import ru.artkolest.spidertestproject.data.api.NetworkApi
 import ru.artkolest.spidertestproject.domain.NetworkDataSource
+import ru.artkolest.spidertestproject.util.BASE_URL
 
 @Module
 class NetworkModule {
@@ -30,7 +31,7 @@ class NetworkModule {
 
     @Provides
     fun provideProfileAPI(): NetworkApi {
-        return createRetrofitClient("https://apidocs.imgur.com/?version=latest#c85c9dfc-7487-4de2-9ecd-66f727cf3139").create(NetworkApi::class.java)
+        return createRetrofitClient(BASE_URL).create(NetworkApi::class.java)
     }
 
     @Provides

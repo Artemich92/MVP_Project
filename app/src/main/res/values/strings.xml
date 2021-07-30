@@ -3,4 +3,8 @@
     <string name="photo_info">photo info</string>
     <string name="info_about_photo">info about photo</string>
     <string name="btn_prev_photos">btn_prev_photos</string>
+    <string name="load">Load...</string>
+    <string name="list_pictures">List of pictures</string>
+    <string name="error_permissions">Ошибка пермишенов</string>
+    <string name="author">Author: %1$s</string>
 </resources>

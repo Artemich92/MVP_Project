@@ -3,7 +3,7 @@ package ru.artkolest.spidertestproject.base
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class BasePresenter<V: BaseContract.View>: BaseContract.Presenter {
+abstract class BasePresenter<V : BaseContract.View> : BaseContract.Presenter {
 
     protected var disposables = CompositeDisposable()
 

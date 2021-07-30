@@ -19,6 +19,10 @@ inline fun View.hide() {
     visibility = View.GONE
 }
 
+inline fun View.show() {
+    visibility = View.VISIBLE
+}
+
 inline fun View.onClick(delayMillis: Long = 500, crossinline clickListener: (View) -> Unit) {
     var clickMillis = 0L
     setOnClickListener {
@@ -29,3 +33,4 @@ inline fun View.onClick(delayMillis: Long = 500, crossinline clickListener: (Vie
         }
     }
 }
+

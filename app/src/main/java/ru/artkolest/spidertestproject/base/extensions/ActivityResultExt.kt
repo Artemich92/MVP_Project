@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 
 fun Fragment.permissions(
     vararg permissions: String,
-    extension: MultiplePermissionsBuilder.() -> Unit
+    extension: MultiplePermissionsBuilder.() -> Unit,
 ) {
     val builder = MultiplePermissionsBuilder()
     builder.apply(extension)
@@ -19,9 +19,10 @@ fun Fragment.permissions(
 private inline fun Fragment.requestMultiplePermissions(
     vararg permissions: String,
     crossinline allGranted: () -> Unit = {},
-    crossinline denied: (List<String>) -> Unit = {}
+    crossinline denied: (List<String>) -> Unit = {},
 ) {
-    requireActivity().activityResultRegistry.register("permissionsKey", ActivityResultContracts.RequestMultiplePermissions()) { result: MutableMap<String, Boolean> ->
+    requireActivity().activityResultRegistry.register("permissionsKey",
+        ActivityResultContracts.RequestMultiplePermissions()) { result: MutableMap<String, Boolean> ->
         val deniedList = result.filter { !it.value }.map { it.key }
         when {
             deniedList.isNotEmpty() -> {
